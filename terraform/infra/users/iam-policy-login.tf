@@ -1,15 +1,15 @@
-resource "aws_iam_policy" "register_policy" {
-    name = "${var.environment}-register-policy"
+resource "aws_iam_policy" "login_policy" {
+    name = "${var.environment}-login-policy"
 
     policy = jsonencode({
         Version: "2012-10-17",
         Statement: [
             {
                 Action: [
-                    "dynamodb:PutItem"
+                    "dynamodb:Query"
                 ],
                 Effect: "Allow",
-                Resource: "${aws_dynamodb_table.users.arn}"
+                Resource: "${aws_dynamodb_table.users.arn}/index/${var.environment}-email-gsi"
             },
             {
                 Effect: "Allow",
