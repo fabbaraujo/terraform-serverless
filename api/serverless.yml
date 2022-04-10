@@ -31,6 +31,18 @@ functions:
           path: /login
           method: post
 
+  create_booking:
+    role: ${ssm:${self:custom.stage}-create-booking-iam-role}
+    handler: create-booking/handler.login
+    environment:
+      DYNAMODB_BOOKINGS: ${ssm:${self:custom.stage}-dynamodb-bookings-table}
+    events:
+      - httpApi:
+          path: /bookings
+          method: post
+          authorizer:
+            name: authorizer
+
   authorizer:
     handler: authorizer/handler.authorizer
     environment:
