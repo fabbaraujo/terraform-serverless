@@ -1,0 +1,17 @@
+service: bookings-consumer
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+  stage: dev
+  region: us-east-1
+
+functions:
+  stream_listener:
+    handler: handler.listen
+    role: ${ssm:${self:custom.stage-bookings_stream_consumer_iam_role}
+    events:
+      - stream:
+          name: ${ssm:${self:custom.stage}-dynamodb-bookings-stream}
