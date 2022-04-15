@@ -12,6 +12,8 @@ functions:
   stream_listener:
     handler: handler.listen
     role: ${ssm:${self:custom.stage-bookings_stream_consumer_iam_role}
+    environment:
+      SNS_NOTIFICATIONS_TOPIC: ${ssm:${self:custom.stage}-notifications-topic}
     events:
       - stream:
           name: ${ssm:${self:custom.stage}-dynamodb-bookings-stream}
