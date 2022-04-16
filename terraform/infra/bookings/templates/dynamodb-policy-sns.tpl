@@ -3,7 +3,10 @@ ${jsonencode({
     Statement: [
         {
             Action: [
-                "${action}"
+                "dynamodb:DescribeStream", 
+                "dynamodb:GetRecords", 
+                "dynamodb:GetShardIterator", 
+                "dynamodb:ListStreams"
             ],
             Effect: "Allow",
             Resource: "${resource}"
@@ -16,6 +19,13 @@ ${jsonencode({
                 "logs: PutLogEvents"
             ],
             Resource: "*"
+        },
+        {
+            Action: [
+                "sns:Publish"
+            ],
+            Effect: "Allow",
+            Resource: "${sns_topic}"
         }
     ]
 })}
