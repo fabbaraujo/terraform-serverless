@@ -8,6 +8,10 @@ cd api/
 executeSls
 cd ../bookings-consumer/
 executeSls
+cd ../sms-notification/
+executeSls
+cd ../email-notification
+executeSls
 
 cd ../terraform/environments/$1
 pwd
