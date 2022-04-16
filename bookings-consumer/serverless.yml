@@ -17,3 +17,6 @@ functions:
     events:
       - stream:
           name: ${ssm:${self:custom.stage}-dynamodb-bookings-stream}
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
