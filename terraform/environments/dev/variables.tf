@@ -41,3 +41,15 @@ variable "email_to" {
 variable "smtp_server" {
     
 }
+
+variable "message_sms_api_key" {
+
+}
+
+variable "sms_phone_from" {
+
+}
+
+variable "sms_phone_to" {
+    
+}
